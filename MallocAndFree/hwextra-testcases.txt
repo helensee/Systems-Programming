@@ -1,0 +1,115 @@
+//this is from the main.c file where we tested out mymalloc and myfree
+Case 1: general malloc and free
+Input:
+	void * one_first = malloc(5);
+	char * one_second = (char *) malloc(10);
+	free(one_first);
+	free(one_second);
+Output: (no errors)
+Case 1
+
+Case 2: combination of malloc and free
+Input:
+	void * two_first = malloc(50);
+	free(two_first);
+	two_first = malloc(100);
+	free(two_first);
+	char * two_second = (char *) malloc(20);
+	free(two_second);
+Output: (no errors)
+Case 2
+
+Case 3: redundant free()ing of the same pointer
+Input:
+	char * three_first = (char *) malloc(30);
+	free(three_first);
+	free(three_first);
+	
+Output:
+Case 3
+Error: Double free detected at FILE: main.c LINE: 25
+
+Case 4: free()ing pointers to dynamic memory that were not returned from malloc()
+Input:
+	void * four_first = malloc(4);
+	free(four_first + 2);
+Output:
+Case 4
+Error: Cannot free pointers, to dynamic memory, that were not returned from malloc() from FILE: main.c LINE: 32
+
+Case 5: Fragmentation
+Input:
+	void * five_first = malloc(10);
+	void * five_second = malloc(40);
+	void * five_third = malloc(1000);
+	void * five_fourth = malloc(100);
+	free(five_first);
+	five_first = malloc(30);
+	free(five_first);
+	free(five_second);
+	free(five_fourth);
+	five_first = malloc(3000);
+	free(five_first);
+	free(five_third);
+Output:
+Case 5
+Error: Fragmentation at FILE: main.c LINE: 46
+
+Case 6: Saturation
+Input:
+	void * six_first = malloc(1000);
+	void * six_second = malloc(300);
+	void * six_third = malloc(4000);
+	free(six_first);
+	free(six_second);
+	free(six_third);
+
+Output:
+Case 6
+Error: Saturation at FILE: main.c LINE: 56
+Error: Malloc failed at FILE: main.c LINE: 56
+Error: Cannot free NULL from FILE: main.c LINE: 59
+
+Case 7: valid double free
+Input:
+	void * seven_first = malloc(4000);
+	free(seven_first);
+	seven_first = malloc(4000);
+	free(seven_first);
+Output: (no errors)
+Case 7
+
+Case 8: free()ing pointers that were never allocated
+Input:
+	int x = 5;
+	free(&x);
+Output:
+Case 8
+Error: Cannot free pointer that has never been allocated from FILE: main.c LINE: 74
+
+Case 9: Malloc and free with memory leaks
+Input:
+	void * nine_first = malloc(100);
+	void * nine_second = malloc(300);
+	void * nine_third = malloc(200);
+	void * nine_fourth = malloc(20);
+	free(nine_first);
+	free(nine_third);
+Output: (no errors)
+Case 9
+
+Case 10: testing calloc along with calloc(0, sizeof())
+Input:
+	void * ten_first = calloc(4, 100*sizeof(int));
+	void * ten_second = calloc(0, 50*sizeof(char));
+	void * ten_third = malloc(1000);
+	free(ten_first);
+	free(ten_second);
+	free(ten_third);
+	ten_first = malloc(10);
+	ten_second = malloc(20);
+	free(ten_first);
+	free(ten_second);
+Output: (some error)
+Case 10
+Error: Cannot free NULL from FILE: main.c LINE: 95
