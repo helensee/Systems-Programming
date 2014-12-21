@@ -1,8 +1,8 @@
 /*
-*Assignment 2
+*For Assignment 2
 *SortedList
-*By: Helen See and HyunMo Yang
-*
+*Provided by Professors
+*Modified by: Helen See and HyunMo Yang
 */
 
 #ifndef SORTED_LIST_H
