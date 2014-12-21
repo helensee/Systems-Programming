@@ -1,0 +1,61 @@
+/*
+*Assignment 4
+*Search
+*By: Helen See and HyunMo Yang
+*
+*/
+
+Test Cases
+
+1. Incorrect amount of commands
+Input: ./search
+Output: Incorrect amount of inputs.
+
+2. Using a non-existing file
+Input: ./search texxt.txt
+Output: Error while opening the file.
+
+3. User inputs a directory instead of a file
+Input: ./search Input/
+Output: User input is a directory. Please input a file.
+
+4. Input is an empty file
+Input: ./search empty.txt
+Output (our code will continue to allow the user to search through an empty file)
+
+5. User types q
+Input: q
+Output: Existing. The search tool is gracefully shutting itself down.
+
+6. sa for one word
+Input: sa something
+Output:
+
+7. sa for three words
+Input: sa mary the cat
+Output: testcase/test2-1.txt
+
+8. sa for five words, one not existing
+Input: sa there once upon cats akdjfa data
+Output: There are no files matching word(s).
+
+9. sa duplicate words
+Input: so dog dog
+Output: testcase/text1-3.txt
+
+10. so for one word
+Input: so cats
+Output: testcase/text2-1.txt
+
+11. so for three words, two words are in the same file
+Input: so dog fish data
+Output: testcase/text1-3.txt textcase/test2-2.txt
+
+12. so for two word, none existing
+Input: so skdljf ekrajl
+Output: There are no files matching word(s).
+
+13. so duplicate words
+Input: so dog dog
+Output: testcase/text1-3.txt
+
